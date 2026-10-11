@@ -10,9 +10,22 @@ export class TodosController {
     return this.todosService.getAll();
   }
 
+  @Get(':id')
+  getById(@Param('id', ParseIntPipe) id: number) {
+    return this.todosService.getById(id);
+  }
+
   @Post()
   create(@Body() todo: any) {
     return this.todosService.create(todo);
+  }
+
+  @Put(':id')
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateData: any,
+  ) {
+    return this.todosService.update(id, updateData);
   }
 
   @Delete(':id')
